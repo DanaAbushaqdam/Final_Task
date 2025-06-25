@@ -1,0 +1,23 @@
+{
+  "name": "final_task",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^22.2.0",
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.5",
+    "@types/testing-library__cypress": "^5.0.13",
+    "cypress": "^14.5.0",
+    "cypress-wait-until": "^3.0.2",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "moment": "^2.30.1"
+  }
+}

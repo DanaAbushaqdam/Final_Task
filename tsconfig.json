@@ -1,0 +1,38 @@
+// {
+//   "compilerOptions": {
+//     "target": "ES2018",
+//     "module": "es2015",                      // ✅ ضروري مع bundler
+//     "moduleResolution": "bundler",           // ✅ يشتغل مع es2015
+//     "strict": true,
+//     "baseUrl": ".",
+//     "paths": {
+//       "@pageObjects/*": ["cypress/pageObjects/*"]
+//     },
+//     "types": ["cypress", "@types/testing-library__cypress"],
+//     "esModuleInterop": true,
+//     "skipLibCheck": true
+//   },
+//   "exclude": ["node_modules"]
+// }
+{
+  "compilerOptions": {
+    "target": "ES2018",
+    "module": "es2015",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "baseUrl": ".",  // ✅ مهم جداً!
+    "paths": {
+      "@support/*": ["cypress/support/*"],
+      "@pageObjects/*": ["cypress/pageObjects/*"]
+    },
+    "types": ["cypress"],
+    "esModuleInterop": true,
+    "skipLibCheck": true
+  },
+  "exclude": ["node_modules"]
+}
+
+
+
+
+    
