@@ -25,24 +25,17 @@ export default class CreateCandidateActions {
     cy.get('input[name="middleName"]').type(candidate.middleName);
     cy.get('input[name="lastName"]').type(candidate.lastName);
 
-    // Vacancy
     cy.get(".oxd-select-text").first().click();
     cy.get(".oxd-select-dropdown").contains(candidate.vacancyName).click();
 
-    // Email
     cy.get('input[placeholder="Type here"]').eq(0).type(candidate.email);
 
-    // Contact Number
     cy.get('input[placeholder="Type here"]').eq(1).type(candidate.contactNumber);
 
-    // Resume Upload
     cy.get('input[type="file"]').selectFile(candidate.resumePath, { force: true });
 
-    // Keywords
     cy.get('input[placeholder="Enter comma seperated words..."]').type(candidate.keywords);
 
-    // Date of Application
-// ✅ بدل السطر الموجود بتاع تاريخ التقديم بهذا السطر:
 cy.get("form").within(() => {
   cy.get("input").each(($input, index) => {
     cy.wrap($input).invoke("attr", "placeholder").then((placeholder) => {
@@ -65,10 +58,8 @@ cy.get("form").within(() => {
 
 
 
-    // Notes
     cy.get('textarea[placeholder="Type here"]').type(candidate.notes);
 
-    // Consent Checkbox
     if (candidate.consent) {
       cy.get('input[type="checkbox"]').check({ force: true });
     }
@@ -77,7 +68,6 @@ cy.get("form").within(() => {
 async clickOnSaveButton() {
   cy.get('button[type="submit"]').contains("Save").click();
 
-  // ✅ انتظري رسالة النجاح قبل الانتقال أو التحقق
   cy.get(".oxd-toast").should("be.visible").and("contain.text", "Successfully Saved");
 }
 

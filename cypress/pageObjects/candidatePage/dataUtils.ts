@@ -41,13 +41,10 @@ export default class CandidateDataUtils {
     });
   }
 
-  /**
-   * 🧪 Creates a candidate and moves them to "Interview Passed" status using UI.
-   */
+
   prepareCandidateInInterviewPassed(): void {
     const candidate = getCandidate();
 
-    // Step 1: Add
     this.candidateActions.openAddCandidatePage();
     this.candidateActions.fillCandidateForm({
       firstName: candidate.firstName,
@@ -66,12 +63,10 @@ export default class CandidateDataUtils {
 
     cy.get(".orangehrm-recruitment-status").should("contain.text", "Application Initiated");
 
-    // Step 2: Shortlist
     this.recruitmentActions.clickOnButtonStatus("Shortlist");
     this.recruitmentActions.clickOnSaveButtonOnStatusPage();
     cy.get(".orangehrm-recruitment-status").should("contain.text", "Shortlisted");
 
-    // Step 3: Schedule Interview
     this.recruitmentActions.clickOnButtonStatus("Schedule Interview");
 
     cy.get("label").contains("Interview Title")
@@ -93,7 +88,6 @@ export default class CandidateDataUtils {
 
     cy.get(".orangehrm-recruitment-status").should("contain.text", "Interview Scheduled");
 
-    // Step 4: Mark Interview Passed
     this.recruitmentActions.clickOnButtonStatus("Mark Interview Passed");
     this.recruitmentActions.clickOnSaveButtonOnStatusPage();
 

@@ -15,7 +15,7 @@ clickOnButtonStatus(buttonName: string) {
   cy.get(".orangehrm-card-container")
     .find("button")
     .contains(buttonName)
-    .should("be.visible") // تأكد إنه الزر فعلياً ظاهر
+    .should("be.visible") 
     .click({ force: true });
 }
 
@@ -23,7 +23,6 @@ clickOnButtonStatus(buttonName: string) {
 scheduleInterview(interviewData: NewInterview) {
   cy.get('input[placeholder="Type here"]').eq(2).type(interviewData.interviewName);
   cy.get('input[placeholder="yyyy-dd-mm"]').type(interviewData.interviewDate);
-  // إذا بدك تضيفي وقت أو نوت اكتبيهم كمان
   cy.get('input[placeholder="hh:mm"]').type(interviewData.interviewTime || "10:00");
   cy.get('textarea[placeholder="Type here"]').type(interviewData.note || "Interview note");
   cy.get('button[type="submit"]').contains("Save").click();
@@ -42,18 +41,14 @@ filterByStatus(status: string): void {
       .click();
   });
 
-  // كبسة Search
   cy.get("button").contains("Search").click();
 }
 openCandidateDetailsByName(name: string): void {
-  // انتظر الجدول يجهز
   cy.get(".oxd-table-body", { timeout: 10000 }).should("be.visible");
 
-  // دور على الصف اللي فيه اسم المرشح
   cy.get(".oxd-table-body .oxd-table-row").contains(name)
     .parents(".oxd-table-row")
     .within(() => {
-      // اضغط على زر العين (view)
       cy.get(".bi-eye-fill").click();
     });
 }
@@ -90,7 +85,6 @@ openCandidateDetailsByName(name: string): void {
 clickOnSaveButtonOnStatusPage() {
   cy.get('button[type="submit"]').contains("Save").click();
 
-  // اختياري: إذا ظهر التوست، تحقق منه، وإذا ما ظهر، تجاهله
   cy.get("body").then(($body) => {
     if ($body.find(".oxd-toast").length > 0) {
       cy.get(".oxd-toast")

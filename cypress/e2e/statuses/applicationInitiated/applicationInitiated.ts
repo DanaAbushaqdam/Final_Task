@@ -15,7 +15,7 @@ const recruitmentPageAssertions = new RecruitmentPageAssertions();
 const candidate = getCandidate();
 
 before(() => {
-  cy.login(); // تسجيل الدخول مرة واحدة قبل السيناريوهات
+  cy.login();
 });
 
 Given("User navigates to Add Candidate page", () => {

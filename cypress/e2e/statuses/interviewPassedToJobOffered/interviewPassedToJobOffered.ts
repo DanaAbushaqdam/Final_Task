@@ -22,10 +22,9 @@ const candidate = getCandidate();
 Given("A candidate is in Interview Passed status", () => {
   const candidate = getCandidate();
 
-  // 1. فتح صفحة إضافة المرشح
+ 
   candidatePageActions.openAddCandidatePage();
 
-  // 2. تعبئة بيانات المرشح
   candidatePageActions.fillCandidateForm({
     firstName: candidate.firstName,
     middleName: candidate.middleName || "QA",
@@ -40,20 +39,16 @@ Given("A candidate is in Interview Passed status", () => {
     vacancyName: "Payroll Admin"
   });
 
-  // 3. حفظ المرشح
   candidatePageActions.clickOnSaveButton();
 
-  // 4. التحقق من Application Initiated
   cy.get(".orangehrm-recruitment-status")
     .should("contain.text", "Application Initiated");
 
-  // 5. Shortlist
   recruitmentPageActions.clickOnButtonStatus("Shortlist");
   recruitmentPageActions.clickOnSaveButtonOnStatusPage();
   cy.get(".orangehrm-recruitment-status")
     .should("contain.text", "Shortlisted");
 
-  // 6. Schedule Interview
   recruitmentPageActions.clickOnButtonStatus("Schedule Interview");
   cy.get("label").contains("Interview Title")
     .parents(".oxd-input-group")
@@ -77,11 +72,9 @@ Given("A candidate is in Interview Passed status", () => {
   cy.get(".orangehrm-recruitment-status")
     .should("contain.text", "Interview Scheduled");
 
-  // 7. Mark Interview Passed
   recruitmentPageActions.clickOnButtonStatus("Mark Interview Passed");
   recruitmentPageActions.clickOnSaveButtonOnStatusPage();
 
-  // 8. التحقق من Interview Passed
   cy.get(".orangehrm-recruitment-status")
     .should("contain.text", "Interview Passed");
 

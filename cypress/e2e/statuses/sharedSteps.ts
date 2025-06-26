@@ -17,28 +17,24 @@ When("The user clicks the {string} button", (buttonName: string) => {
 
     cy.contains("button", "Schedule Interview").click();
 
-    // Interview Title
     cy.get("label").contains("Interview Title")
       .parents(".oxd-input-group")
       .find("input")
       .should("be.visible")
       .type(interview.interviewName);
 
-    // Interviewer
     cy.get('input[placeholder="Type for hints..."]').type("Ratul");
     cy.contains("Ratul").click();
 
-    // Date
     cy.get("label").contains("Date")
       .parents(".oxd-input-group")
       .find("input")
       .type(interview.interviewDate)
       .blur();
 
-    // Notes
     cy.get("textarea[placeholder='Type here']").type("Schedule interview notes");
 
-    // Save
+    
     cy.get("button").contains("Save").click();
 
     cy.get(".orangehrm-recruitment-status", { timeout: 10000 })
@@ -53,10 +49,8 @@ When("The user clicks the {string} button", (buttonName: string) => {
 Given("A candidate is in Job Offered status", () => {
   const candidate = getCandidate();
 
-  // 1. فتح صفحة إضافة المرشح
   candidatePageActions.openAddCandidatePage();
 
-  // 2. تعبئة بيانات المرشح
   candidatePageActions.fillCandidateForm({
     firstName: candidate.firstName,
     middleName: candidate.middleName || "QA",
@@ -71,20 +65,16 @@ Given("A candidate is in Job Offered status", () => {
     vacancyName: "Payroll Admin"
   });
 
-  // 3. حفظ المرشح
   candidatePageActions.clickOnSaveButton();
 
-  // 4. التحقق من Application Initiated
   cy.get(".orangehrm-recruitment-status")
     .should("contain.text", "Application Initiated");
 
-  // 5. Shortlist
   recruitmentPageActions.clickOnButtonStatus("Shortlist");
   recruitmentPageActions.clickOnSaveButtonOnStatusPage();
   cy.get(".orangehrm-recruitment-status")
     .should("contain.text", "Shortlisted");
 
-  // 6. Schedule Interview
   recruitmentPageActions.clickOnButtonStatus("Schedule Interview");
   cy.get("label").contains("Interview Title")
     .parents(".oxd-input-group")
@@ -112,7 +102,6 @@ Given("A candidate is in Job Offered status", () => {
   recruitmentPageActions.clickOnSaveButtonOnStatusPage();
   cy.get(".orangehrm-recruitment-status").should("contain.text", "Interview Passed");
 
-  // 7. Offer Job
   recruitmentPageActions.clickOnButtonStatus("Offer Job");
   recruitmentPageActions.clickOnSaveButtonOnStatusPage();
   cy.get(".orangehrm-recruitment-status").should("contain.text", "Job Offered");
